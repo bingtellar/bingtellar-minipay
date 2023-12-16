@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Celo Demo Transfer</title>
+    <link rel="stylesheet" href="/static/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/celo.css">
+</head>
+<body class="p-0 bg-light">
+{% csrf_token %}
+<div class="container-fluid">
+    <div class="container vh-100 d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-sm-10 col-lg-12 col-md-12">
+                <div class="payment-widget bg-white responsive-expand">
+                    <div class="step">
+                        <div class="transfer-header d-flex justify-content-between">
+                            <span class="bing-icon "></span>
+                            <span class="bing-icon x-icon"></span>
+                        </div>
+                        <div class="transfer-question">
+                            <span>How much do you want to send?</span>
+                        </div>
+
+                        <div class="transfer-input">
+                            <span>&#x20A6;</span>
+                            <input type="text" value="200" placeholder="">
+                        </div>
+
+                        <div class="transfer-rate">
+                            <span>Recipient to get</span>
+                            <span>200</span>
+                            <span>NGN</span>
+                        </div>
+
+                        <div class="transfer-currency-box">
+                            <div class="d-flex justify-content-between box">
+                                <span>Send From</span>
+
+                                <div class="currency-description">
+                                    <span class="icon cusd"></span>
+                                    <span>CUSD</span>
+                                    <span class="icon arrow-down"></span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between box">
+                                <span>Send To</span>
+                                <div class="currency-description toggle-slideup" target-list=".fiat-list">
+                                    <span id="dest_country" class="icon ng"></span>
+                                    <span id="dest_currency">NGN</span>
+                                    <span class="icon arrow-down"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transfer-delivery">
+                            <span>Receive Method</span>
+                            <div class="delivery-picker toggle-slideup" target-list=".payment-list">
+                                <span class="method-text">Choose delivery method</span>
+                                <span class="icon arrow-down"></span>
+                            </div>
+                        </div>
+
+                        <div class="transfer-continue-container">
+                            <button class="continue-pay">Continue</button>
+                        </div>
+
+                        <div class="powered">
+                            <span>Powered by Bingtellar</span>
+                        </div>
+                    </div>
+                    <div class="step d-none">
+                        <div class="transfer-header d-flex justify-content-between">
+                            <span class="bing-icon previous-icon"></span>
+                        </div>
+
+                        <div class="bank-option payment-option">
+                            <div class="transfer-question">
+                                <span>Enter Recipient Bank Details</span>
+                            </div>
+
+                            <div class="selector toggle-slideup" target-list=".bank-list">
+                                <span class="icon mobilemoney"></span>
+                                <input type="text" id="get_bank_name" readonly>
+                                <span class="bing-icon arrow-down"></span>
+                            </div>
+
+                            <div class="selector">
+                                <input id="account_num" type="text" placeholder="Account Number" >
+                            </div>
+
+                            <div class="selector">
+                                <input id="account_name" type="text" placeholder="Recipient Name" readonly>
+                            </div>
+
+                            <div class="selector">
+                                <input type="text" placeholder="Recipient Phone">
+                            </div>
+                        </div>
+
+                        <div class="payment-option momo">
+                            <div class="transfer-question">
+                                <span>Enter Mobile Money Details</span>
+                            </div>
+
+                            <div class="selector toggle-slideup" target-list=".momo-list" target-name="Bank">
+                                <span class="icon mobilemoney"></span>
+                                <input id="mobile_money_name" type="text" readonly>
+                                <span class="bing-icon arrow-down"></span>
+                            </div>
+
+
+                            <div class="selector">
+                                <span>+123</span>
+                                <input type="text" placeholder="Phone number">
+                            </div>
+
+                            <div class="selector">
+                                <input type="text" placeholder="Enter Name">
+                            </div>
+                        </div>
+
+                        <div class="note">
+                            <textarea rows="2" placeholder="Description (optional)"></textarea>
+                        </div>
+                        <div class="transfer-continue-container">
+                            <button class="continue-pay">Continue</button>
+                        </div>
+                    </div>
+                    <div class="step d-none">
+                        <div class="transfer-header d-flex justify-content-between">
+                            <span class="bing-icon previous-icon"></span>
+                        </div>
+
+                        <div class="transfer-question">
+                            <span>Choose Payment Method</span>
+                        </div>
+
+                        <div class="payment-method-listing">
+                            <div class="listing-card d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="icon minpay-icon"></span>
+                                    <span>MiniPay</span>
+                                </div>
+                                <span class="bing-icon arrow-right-black"></span>
+                            </div>
+                            <div class="listing-card d-flex justify-content-between">
+                                <div>
+                                    <span class="icon valora-icon"></span>
+                                    <span>Valora</span>
+                                </div>
+                                <span class="bing-icon arrow-right-black"></span>
+                            </div>
+                        </div>
+
+                        <div class="secure-info">
+                            <div class="p-1">
+                                <span class="bing-icon info-icon"></span>
+                            </div>
+                            <span>Your details are private and secure. Bingtellar does not have access to your account and cannot move your funds without your consent.</span>
+                        </div>
+                        <div class="transfer-continue-container">
+                            <button class="toggle-slideup complete_payment" target-list=".processing-list">Make Payment</button>
+                        </div>
+                    </div>
+                    <div class="step d-none h-100 bg-danger">
+                        <div class="transfer-header d-flex justify-content-between">
+                            <span class="bing-icon previous-icon"></span>
+                        </div>
+                        <div>
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="slideup-container">
+
+                        <div class="list fiat-list">
+                            <div class="dismiss-icon-container">
+                                <span class="bing-icon x-icon dismiss"></span>
+                                <div>
+                                    <span>Recipient Currency</span>
+                                </div>
+                            </div>
+
+                            <div class="search-container">
+                                <span class="bing-icon search-icon"></span>
+                                <input type="text">
+                            </div>
+
+                            <div class="listing">
+                                <div class="listing-card" dest-currency="NGN" dest-country="ng">
+                                    <span class="icon ng"></span>
+                                    <span>NGN</span>
+                                </div>
+                                <div class="listing-card" dest-currency="KES" dest-country="ke">
+                                    <span class="icon ke"></span>
+                                    <span>KES</span>
+                                </div>
+
+                                <div class="listing-card" dest-currency="UGX" dest-country="ug">
+                                    <span class="icon ug"></span>
+                                    <span>UGX</span>
+                                </div>
+
+                                <div class="listing-card" dest-currency="GHC" dest-country="gh">
+                                    <span class="icon gh"></span>
+                                    <span>GHC</span>
+                                </div>
+
+                                <div class="listing-card" dest-currency="RWF" dest-country="rw">
+                                    <span class="icon rw"></span>
+                                    <span>RWF</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="list payment-list">
+
+                            <div class="dismiss-icon-container">
+                                <span class="bing-icon x-icon dismiss"></span>
+                                <div>
+                                    <span>Delivery Method</span>
+                                </div>
+                            </div>
+                            <div class="search-container">
+                                <span class="bing-icon search-icon"></span>
+                                <input type="text">
+                            </div>
+
+                            <div class="listing">
+                                <div class="listing-card delivery-choice" target-data=".bank-option" target-name="Bank Details" target-id="bank">
+                                    <span class="bing-icon bank"></span>
+                                    <span>Bank Account</span>
+                                </div>
+                                <div class="listing-card delivery-choice" target-data=".momo" target-name="Mobile Money" target-id="momo">
+                                    <span class="bing-icon mobilemoney"></span>
+                                    <span>Mobile Money</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="list bank-list">
+                            <div class="dismiss-icon-container">
+                                <span class="bing-icon x-icon dismiss"></span>
+                                <div>
+                                    <span>Choose Bank</span>
+                                </div>
+                            </div>
+
+                            <div class="search-container">
+                                <span class="bing-icon search-icon"></span>
+                                <input type="text">
+                            </div>
+
+                            <div class="listing bank-json-listing">
+                            </div>
+
+                        </div>
+
+                        <div class="list momo-list">
+                            <div class="dismiss-icon-container">
+                                <span class="bing-icon x-icon dismiss"></span>
+                                <div>
+                                    <span>Mobile Money Agent</span>
+                                </div>
+                            </div>
+
+                            <div class="search-container">
+                                <span class="bing-icon search-icon"></span>
+                                <input type="text">
+                            </div>
+
+                            <div class="listing">
+                                <div class="listing-card">
+                                    <span class="icon momo-icon"></span>
+                                    <span>MoMo</span>
+                                </div>
+                                <div class="listing-card">
+                                    <span class="icon vodafone"></span>
+                                    <span>Vodafone</span>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="list processing-list d-flex justify-content-center error-response-text align-items-center">
+                            <span class="loader"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/assets/js/app/request.js"></script>
+<script src="/static/assets/js/app/element.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js" crossorigin="anonymous"></script>-->
+<!--<script src="/static/node_modules/web3/lib/commonjs/web3.js"></script>-->
+<script type="module" defer src="/static/index.js/"></script>
+<script src="/static/assets/js/app/celo.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkout Widget</title>
+    <link rel="stylesheet" href="/static/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/celo.css">
+</head>
+<body class="p-0 bg-light">
+
+<div class="container-fluid">
+    <div class="container vh-100 d-flex align-items-center justify-content-center">
+
+        <div class="">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row payment-widget">
+                        <div class="col-lg-6 col-md-6 col-sm-12 pay-summary">
+                            <div class="summary-title">
+                                <span>You Pay</span>
+                            </div>
+                            <div class="summary-amount">
+                                <span>$ 5,000</span>
+                            </div>
+                            <div class="summary-title-fancy">
+                                <span>Order Details</span>
+                            </div>
+                            <ul class="order-list">
+                                <li>
+                                    <span class="bing-icon store-icon"></span>
+                                    Jumia Online NG
+                                </li>
+                                <li>
+                                    <span class="bing-icon calendar-icon"></span>
+                                    2 December, 2023
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 pay-provider">
+                            <!--<div class="title-container">
+                                <span>Choose Provider</span>
+                            </div>-->
+                            <div class="tilt-container">
+                                <img class="tilt-bag" src="/static/assets/images/FX13_bag.svg" alt='Tilt bag'>
+                                <img class="tilt-bag" src="/static/assets/images/428-mans-shoe.svg">
+                            </div>
+                            <div class="container description">
+                                <small>Choose a wallet option to complete payment</small>
+                            </div>
+                            <div class="search-container">
+                                <div class="input-container">
+                                    <span class="bing-icon search-icon"></span>
+                                    <input type="text" name="" id="">
+                                </div>
+
+                                <ul class="provider-list">
+                                    <li><span class="bing-icon minpay-icon"></span> MiniPay</li>
+                                    <li><span class="bing-icon valora-icon"></span> Valora</li>
+                                    <li><span class="bing-icon wallet-icon"></span> Other Wallets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/static/assets/js/vendor/jquery-3.6.4.min.js"></script>
+<script src="/static/assets/js/vendor/tilt.jquery.min.js"></script>
+<script>
+    $('.tilt-bag').tilt({
+        scale: 1.2
+    })
+</script>
+
+</body>
+</html>
